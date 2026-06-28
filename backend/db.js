@@ -1,14 +1,26 @@
-const mongoose = require("mongoose");
+import { MongoClient } from "mongodb";
 
-const MONGO_URI = "mongodb://127.0.0.1:27017/moodTrackerDB";
+const uri = "mongodb://127.0.0.1:27017";
 
-async function connectDB() {
-    try {
-        await mongoose.connect(MONGO_URI);
-        console.log("MongoDB connected");
-    } catch (err) {
-        console.error("MongoDB connection error:", err.message);
-    }
+const client = new MongoClient(uri);
+
+let db;
+
+export async function connectDB() {
+  try {
+    await client.connect();
+    db = client.db("moodjournal");
+
+    console.log("MongoDB connected successfully");
+  } catch (err) {
+    console.error("MongoDB connection failed:", err);
+  }
 }
 
-module.exports = connectDB;
+export function getDB() {
+  if (!db) {
+    throw new Error("Database not connected!");
+  }
+
+  return db;
+}

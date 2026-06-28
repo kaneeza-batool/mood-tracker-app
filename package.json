@@ -11,9 +11,11 @@
   "dependencies": {
     "cors": "^2.8.6",
     "express": "^5.2.1",
+    "mongodb": "^7.4.0",
     "mongoose": "^9.7.3",
     "react": "^19.2.7",
-    "react-dom": "^19.2.7"
+    "react-dom": "^19.2.7",
+    "react-hot-toast": "^2.6.0"
   },
   "devDependencies": {
     "@eslint/js": "^10.0.1",
